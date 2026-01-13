@@ -29,11 +29,11 @@ Route::get('/booking/success', [App\Http\Controllers\BookingController::class, '
 
 
 //AUTH
-Route::get('/login', [AuthController::class,'loginForm'])->name('login');
-Route::post('/login', [AuthController::class,'login']);
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
-Route::get('/logout', [AuthController::class,'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // USER DASHBOARD
@@ -46,7 +46,7 @@ Route::get('/dashboard/pay/{id}', [\App\Http\Controllers\UserDashboardController
 
 
 //ADMIN (PROTECTED)
-Route::middleware(['auth','admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
 
     // Dashboard
     Route::get('/admin', [AdminController::class, 'dashboard']);
@@ -67,7 +67,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('/admin/hotel/create', [HotelController::class, 'create']);
     Route::post('/admin/hotel', [HotelController::class, 'store']);
     Route::get('/admin/hotel/{id}/edit', [HotelController::class, 'edit']);
-    Route::put('/admin/hotel/{id}', [HotelController::class, 'update']);
+    Route::post('/admin/hotel/save/{id}', [HotelController::class, 'update']);
     Route::delete('/admin/hotel/{id}', [HotelController::class, 'destroy']);
 
     Route::delete('/admin/hotel/galeri/{id}', [HotelController::class, 'destroyGaleri'])->name('admin.hotel.galeri.destroy');
